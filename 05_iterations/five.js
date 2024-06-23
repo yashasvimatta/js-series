@@ -21,5 +21,23 @@ languages.forEach((item,index,arr)=>{                   //forEach has other para
     console.log(item,index,arr)
 })
 
+const lang = [
+    {
+        langName: "Javascript",
+        langExt: "js"
+    },
+    {
+        langName: "Python",
+        langExt: "py"
+    },
+    {
+        langName:"Java",
+        langExt: "java"
+    },
+]
+
+lang.forEach( (item) =>{
+    console.log(item.langName);
+})
 
  
