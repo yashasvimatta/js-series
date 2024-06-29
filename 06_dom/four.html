@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit and remove elemnts in DOM</title>
+</head>
+<body style="background-color: #212121; color:aliceblue">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>   
+</body>
+<script>
+    // ADD VALUE
+    function addLanguage(langName){
+        const li = document.createElement('li')
+        li.innerHTML = `${langName}`
+        document.querySelector('.language').appendChild(li)
+    }
+    addLanguage("python")
+    addLanguage("Java")
+
+    // when we use innerHTML then appendChild will traverese the whole tre, if huge then will take more time
+    // so below is the optimized way
+
+    function addLanguageOptimized(langName){
+        const li = document.createElement('li')
+        // const addText = document.createTextNode(langName);
+        // li.appendChild(addText)
+        li.appendChild(document.createTextNode(langName))
+        document.querySelector('.language').appendChild(li)
+    }
+    addLanguageOptimized("golang")
+
+
+    // EDIT VALUE
+    const secondLang = document.querySelector("li:nth-child(2)")
+    //secondLang.innerHTML = "Edited Language"
+
+    const newli =  document.createElement('li'); //instead of innerhtml we created a new elemnt and the replaced the previous value with it
+    newli.textContent ='Edited Language'
+    secondLang.replaceWith(newli)
+
+
+    // edit
+    const firstLang = document.querySelector("li:first-child")
+    firstLang.outerHTML = '<li>Typescript</li>'
+
+
+    // REMOVE VALUE
+    const lastLang = document.querySelector('li:last-child')
+    lastLang.remove()
+
+
+</script>
+</html>
