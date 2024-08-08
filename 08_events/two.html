@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Yashasvi's learning </h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    const printMssg = function(){
+        console.log("Yashasvi hello");
+    }
+    const changeText = function(){
+        document.querySelector('h1').innerHTML = "In progress"
+    }
+    //setTimeout(printMssg,2000)
+    const change= setTimeout(changeText,2000)     // prints this function afetr 2 sec.Holding in variable doesnt mean it wont execute
+
+    document.querySelector('#stop').
+    addEventListener('click',function(){
+        clearTimeout(change)    //clears the setTimeout. in clearTimeout you have to give refernce 
+        //of set timeout that you want to clear
+        console.log("STOP")
+    })
+ 
+</script>
+</html>

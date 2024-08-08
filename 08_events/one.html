@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML events</title>
+</head>
+<body style="background-color: #212121; color:aliceblue">
+    <h2>Images</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    //javascript is a sequentially run language in general
+    // events are invoked on activity not just happen sequesntially
+
+   // document.getElementById('owl').onclick = function(){
+    //     alert("owl clicked")
+    // } 
+
+    //type , timestamp, defaultPrevented
+    //target , toElement, srcElement , currentTarget
+    // clientX , clientT=Y, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+    document.getElementById('images').addEventListener('click', function(e){
+        console.log("click inside the ul")
+    }, false);
+// event propagation have event bubbling(false) and event capturing(true)
+    document.getElementById('owl').addEventListener('click', function(e){
+        console.log("owl clicked");
+        // e.stopPropagation()
+    }, false)
+
+    document.getElementById('google').addEventListener('click',function(e){
+        e.preventDefault();//prevemt opeming up google on clicking
+        console.log("google clicked");
+    },false)
+    // bubbling goes from inner element to outside event
+    //capturing goes from outer elemnt to inner elemnt.
+    // Sometimes we dont want event to inner elemnt and outer element different and
+    //dont want bubbling
+    //for that we use stopPropogation
+    // attachEvent()
+    //jQuery - on 
+    
+    document.querySelector('#images').addEventListener('click',function(e){
+        console.log(e.target.parentNode); //will give the entire <li></li>
+        console.log(e.target.tagName)
+        if(e.target.tagName=== 'IMG'){
+            console.log(e.target.id);
+            let removeIt = e.target.parentNode
+            removeIt.remove() //will rmeove element
+        }
+        
+        
+    })
+</script>
+</html>
