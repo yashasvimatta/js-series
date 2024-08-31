@@ -17,13 +17,13 @@
         document.querySelector('h1').innerHTML = "In progress"
     }
     //setTimeout(printMssg,2000)
-    const change= setTimeout(changeText,2000)     // prints this function afetr 2 sec.Holding in variable doesnt mean it wont execute
+    const changeMe= setTimeout(changeText,2000)     // prints this function afetr 2 sec.Holding in variable doesnt mean it wont execute
 
     document.querySelector('#stop').
     addEventListener('click',function(){
-        clearTimeout(change)    //clears the setTimeout. in clearTimeout you have to give refernce 
+        clearTimeout(changeMe)    //clears the setTimeout. in clearTimeout you have to give refernce 
         //of set timeout that you want to clear
-        console.log("STOP")
+        console.log("STOPPED")
     })
  
 </script>
