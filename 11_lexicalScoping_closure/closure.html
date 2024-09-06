@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure aur chai</title>
+</head>
+<body style="background-color: #313131;">
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+</body>
+
+    <script>
+    // function init() {
+    //     let name = "Mozilla"; 
+    //     function displayName() {
+    //         console.log(name); 
+    //     }
+    //     displayName();
+    // }
+    // init();
+// lexical scoping
+    function outer(){
+        let username = "yashasvi"
+        //console.log("OUTER", secret);  // error as parent will nt have access to children functions variables 
+        function inner(){
+            let secret = "my123"
+            console.log("inner", username);         // this shows inner function has access to outer function variables- lexical scoping  
+        }
+        function innerTwo(){
+            console.log("innerTwo", username);
+            //console.log(secret);   // this will be a error because these both functions are siblings
+        }
+        inner()
+        innerTwo()
+
+    }
+    outer()
+    ///console.log("Extreme OUTER", username);
+
+// closure
+    function makeFunc() {
+        const name = "Mozilla";
+        function displayName() {
+            console.log(name);
+        }
+        return displayName; // a whole function is being returned by the outer function
+    }
+
+    const myFunc = makeFunc(); // once the function executes its execution context get removed as well
+    // but closure says that even tho the execution context has been removed in the memory when the innner fucntion is returned
+    // its entire lexical scoping goes that means the outer function as well
+    myFunc(); 
+
+    </script>
+    <script>
+        // document.getElementById("orange").onclick = function(){
+        //     document.body.style.backgroundColor = `orange`
+        // }
+        // document.getElementById("green").onclick = function(){
+        //     document.body.style.backgroundColor = `green`
+        // }  // as for a lot of buttons we cant reate the code everytime with different color, so we define a clickHandler
+
+        function clickHandler(color){                   // generic function that will take change coolor on clicking specific button to that specific color
+            // document.body.style.backgroundColor = `${color}`
+
+            return function(){
+                document.body.style.backgroundColor = `${color}` // we return this function
+            } // this inner function has access to color as well due to lexical scoping
+        }      
+
+        document.getElementById('orange').onclick = clickHandler("orange")  // onclick expects a function in return type and we are executing the fucntion itself
+        document.getElementById('green').onclick = clickHandler("green") // so to handle that we change the definition of clickHandler
+
+    </script>
+</html>
